@@ -12,20 +12,18 @@ import java.io.Serializable;
  * @author Forge-15
  */
 public class Customer implements Serializable{
+    private int custID;
     private String firstName;
     private String lastName;
     private int age;
     private String email;
     private String password;
-    private char gender;
+    private String gender;
     private String address;
-    private char phoneNo;
-    
-    public Customer() {
-    
-    }
+    private String phoneNo;
 
-    public Customer(String firstName, String lastName, int age, String email, String password, char gender, String address, char phoneNo) {
+    public Customer(int custID, String firstName, String lastName, int age, String email, String password, String gender, String address, String phoneNo) {
+        this.custID = custID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -34,6 +32,13 @@ public class Customer implements Serializable{
         this.gender = gender;
         this.address = address;
         this.phoneNo = phoneNo;
+    }
+
+    public Customer() {
+    }
+
+    public int getCustID() {
+        return custID;
     }
 
     public String getFirstName() {
@@ -56,7 +61,7 @@ public class Customer implements Serializable{
         return password;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -64,8 +69,12 @@ public class Customer implements Serializable{
         return address;
     }
 
-    public char getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
+    }
+
+    public void setCustID(int custID) {
+        this.custID = custID;
     }
 
     public void setFirstName(String firstName) {
@@ -88,7 +97,7 @@ public class Customer implements Serializable{
         this.password = password;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -96,15 +105,17 @@ public class Customer implements Serializable{
         this.address = address;
     }
 
-    public void setPhoneNo(char phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 
     @Override
     public String toString() {
-        return "Customer{" + "firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", password=" + password + ", gender=" + gender + ", address=" + address + ", phoneNo=" + phoneNo + '}';
+        return "Customer{" + "custID=" + custID + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", email=" + email + ", password=" + password + ", gender=" + gender + ", address=" + address + ", phoneNo=" + phoneNo + '}';
     }
+
     
+        
     
     
     

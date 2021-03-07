@@ -5,9 +5,11 @@
  */
 package da;
 
+import domain.Customer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -23,9 +25,44 @@ public class CustomerDA {
     private Connection conn;
     private PreparedStatement stmt;
     
+    
     public CustomerDA() {
         createConnection();
     }
+        public Customer getRecord(int CustID) {
+        createConnection();
+        String queryStr = "SELECT * FROM " + tableName + " WHERE Code = ?";
+        Customer customer = null;
+        try {
+            stmt = conn.prepareStatement(queryStr);
+            stmt.setInt(1, CustID);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                
+                customer = new Customer(CustID, rs.getString("firstName"), rs.getString("lastName") ,rs.getInt("age") ,rs.getString("email") ,rs.getString("password"), rs.getString("gender") , rs.getString("address"),rs.getString("phoneNo"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        } finally{
+            shutDown();
+        }
+        return customer;
+    }
+    
+        public void updateRecord(Customer customer){
+           // to be implemented 
+        }
+        
+        public void addRecord(Customer customer){
+            // to be implemented
+        }
+        
+        public void deleteRecord(String email){
+            // to be implemented
+        }
+   
+    
     
    private void createConnection() {
         try {
